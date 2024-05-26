@@ -4,6 +4,8 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.integration.mail.MailReceiver;
+import org.springframework.integration.mail.Pop3MailReceiver;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,7 +29,7 @@ public class MailService implements IMailService{
 	}
 //
 //
-//-------------Mail sin archivos
+//-------------Envia Mail sin archivos
 	@Override
 	public void sendEmail(String[] toUser, String subject, String message) {
 		
@@ -39,7 +41,7 @@ public class MailService implements IMailService{
 		
 		mailSender.send(simpleMail);
 	}
-//-------------Mail con archivos
+//-------------Envia Mail con archivos
 	@Override
 	public void sendEmail(String[] toUser, String subject, String message, File file) {
 		
@@ -60,6 +62,13 @@ public class MailService implements IMailService{
 			throw new RuntimeException(e);
 		}
 	}
-	
+//------------------------------------------------------------------------------------------
+//-------------PARTE QUE RECIBE LOS EMAIL---------------------------------------------------
+//------------------------------------------------------------------------------------------
 
+	public void receiveEmail() {
+		
+		MailReceiver receiver = new Pop3MailReceiver("");
+		
+	}
 }
