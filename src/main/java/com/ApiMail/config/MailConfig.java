@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
@@ -34,5 +35,11 @@ public class MailConfig {
 		prop.put("mail.debug", "true");
 		
 		return mailSender;
+	}
+//-------------------------------------------------------------------------
+	@Bean
+	IntegrationFlow mailFlow() {
+		
+		return null;
 	}
 }

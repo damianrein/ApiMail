@@ -1,9 +1,11 @@
 package com.ApiMail.service;
 
+import java.io.Closeable;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.integration.StaticMessageHeaderAccessor;
 import org.springframework.integration.mail.MailReceiver;
 import org.springframework.integration.mail.Pop3MailReceiver;
 import org.springframework.mail.SimpleMailMessage;
@@ -69,6 +71,11 @@ public class MailService implements IMailService{
 	public void receiveEmail() {
 		
 		MailReceiver receiver = new Pop3MailReceiver("");
-		
+	
+		Closeable closeableResource = StaticMessageHeaderAccessor.getCloseableResource(receiver);
+		if (closeableResource != null) {
+		    closeableResource.close();
+		}
 	}
+	
 }
