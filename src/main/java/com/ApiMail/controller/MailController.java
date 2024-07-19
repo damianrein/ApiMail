@@ -9,6 +9,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,9 +24,12 @@ import com.ApiMail.service.MailService;
 @RequestMapping("/email")
 public class MailController {
 
+	@Autowired
 	private MailService mailService;
 	
-	public MailController(MailService mailService) {
+	//public MailController() {}
+	
+	public MailController(@Autowired MailService mailService) {
 		this.mailService = mailService;
 	}
 

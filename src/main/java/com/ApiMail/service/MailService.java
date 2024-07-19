@@ -4,6 +4,7 @@ import java.io.Closeable;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.StaticMessageHeaderAccessor;
 import org.springframework.integration.mail.MailReceiver;
@@ -11,17 +12,25 @@ import org.springframework.integration.mail.Pop3MailReceiver;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
+@Service
 public class MailService implements IMailService{
 
-	@Value("$email.sender")
+	@Value("${email.sender}")
 	private String emailUser;
-	
+	@Autowired
 	private JavaMailSender mailSender;
 	private SimpleMailMessage simpleMailMessage;
+	
+	public MailService(String emailUser,@Autowired JavaMailSender mailSender,@Autowired SimpleMailMessage simpleMailMessage) {
+		this.emailUser = emailUser;
+		this.mailSender = mailSender;
+		this.simpleMailMessage = simpleMailMessage;
+	}
 	
 	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
@@ -68,7 +77,8 @@ public class MailService implements IMailService{
 //-------------PARTE QUE RECIBE LOS EMAIL---------------------------------------------------
 //------------------------------------------------------------------------------------------
 
-	public void receiveEmail() {
+/**
+		public void receiveEmail() {
 		
 		MailReceiver receiver = new Pop3MailReceiver("");
 	
@@ -77,5 +87,5 @@ public class MailService implements IMailService{
 		    closeableResource.close();
 		}
 	}
-	
+	**/
 }
