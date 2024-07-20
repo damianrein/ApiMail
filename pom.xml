@@ -34,6 +34,12 @@
     		<artifactId>spring-integration-mail</artifactId>
     		<version>6.3.0</version>
 		</dependency>
+		<!-- DEPENDENCIA DE MAIL DE RESEND-->
+		<dependency>
+    		<groupId>com.resend</groupId>
+    		<artifactId>resend-java</artifactId>
+    		<version>3.1.0</version>
+		</dependency>
 		<dependency>
     		<groupId>org.springdoc</groupId>
     		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
