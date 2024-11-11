@@ -20,13 +20,15 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class MailService implements IMailService{
 
-	@Value("${email.sender}")
+	@Value("${email.sender:springboot472@gmail.com}")
 	private String emailUser;
 	@Autowired
 	private JavaMailSender mailSender;
 	private SimpleMailMessage simpleMailMessage;
 	
-	public MailService(String emailUser,@Autowired JavaMailSender mailSender,@Autowired SimpleMailMessage simpleMailMessage) {
+	public MailService() {}
+	
+	public MailService(@Autowired String emailUser,@Autowired JavaMailSender mailSender,@Autowired SimpleMailMessage simpleMailMessage) {
 		this.emailUser = emailUser;
 		this.mailSender = mailSender;
 		this.simpleMailMessage = simpleMailMessage;

@@ -37,9 +37,9 @@ public class MailConfig {
 		return mailSender;
 	}
 //-------------------------------------------------------------------------
-	@Bean
+/*	@Bean
 	IntegrationFlow mailFlow() {
 		
 		return null;
-	}
+	}*/
 }

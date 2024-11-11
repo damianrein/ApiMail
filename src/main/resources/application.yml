@@ -1,0 +1,11 @@
+email:
+  sender: ${EMAIL_SENDER}
+  password: ${EMAIL_PASSWORD}
+  api_key: ${API_KEY_RESEND}
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB

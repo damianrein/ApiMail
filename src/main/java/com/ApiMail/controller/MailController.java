@@ -19,18 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ApiMail.model.MailFile;
 import com.ApiMail.model.MailSimple;
 import com.ApiMail.service.MailService;
+import com.ApiMail.service.ResendMailService;
 
 @RestController
 @RequestMapping("/email")
 public class MailController {
 
 	@Autowired
+	private ResendMailService resen;
+	
+	@Autowired
 	private MailService mailService;
 	
 	//public MailController() {}
 	
-	public MailController(@Autowired MailService mailService) {
+	public MailController(@Autowired MailService mailService, @Autowired ResendMailService resen) {
 		this.mailService = mailService;
+		this.resen = resen;
 	}
 
 	@PostMapping("/email")
@@ -63,5 +68,11 @@ public class MailController {
 		response.put("archivo", filename);
 		
 		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping("/resend")
+	public ResponseEntity<?> sendMailRe(String sendTo){
+		resen.sendMailWithResend(sendTo);
+		return ResponseEntity.ok().build();
 	}
 }
